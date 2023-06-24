@@ -10,6 +10,8 @@ import Modal from "./Modal"
 
 const Details = () => {
     const [showModal, setShowModal] = useState(false)
+    const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+    const [phoneNumber, setPhoneNumber] = useState("")
     const navigate = useNavigate()
     const [_, setAdoptedPet] = useContext(AdoptedPetContext)
     const {id} = useParams()
@@ -19,12 +21,30 @@ const Details = () => {
     if (results.isLoading){
         return (
             <div className="loading-pane">
-                <h2 className="loader">🐋</h2>
+                <h2 className="loader">🦜</h2>
             </div>
         )
     }
 
     const pet = results.data.pets[0]
+
+    const handlePhoneNumberChange = (event) => {
+        setPhoneNumber(event.target.value)
+    }
+
+    const handleConfirmAdoptClick = () => {
+        const isValidPhoneNumber = /^\d{10}$/.test(phoneNumber)
+
+        if (!isValidPhoneNumber) {
+            alert("Please enter a valid phone number consisting of 10 numeric characters including area code.")
+            return
+        }
+
+        setAdoptedPet(pet)
+        setShowModal(false)
+        setShowConfirmationModal(true)
+    }
+
     return (
         <div className="details">
             <Carousel images={pet.images} />
@@ -37,18 +57,41 @@ const Details = () => {
                     showModal ?
                     (
                         <Modal>
-                            <div>
-                                <h1>Would you like to adopt {pet.name}?</h1>
+                            <div className="adopt-modal">
+                                <h1>Would you like to meet {pet.name}?</h1>
+                                <label htmlFor="Phone number">
+                                If so:
+                                <input
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="Enter phone number here"
+                                    value={phoneNumber}
+                                    onChange={handlePhoneNumberChange}
+                                />
+                                </label>
                                 <div className="buttons">
-                                    <button onClick ={()=> {
-                                        setAdoptedPet(pet)
-                                        navigate('/')
-                                    }}>Yes</button>
-                                    <button onClick={()=> setShowModal(false)}>No</button>
+                                    <button onClick ={handleConfirmAdoptClick}>Yes, please contact me!</button>
+                                    <button onClick={()=> setShowModal(false)}>No, thank you.</button>
                                 </div>
                             </div>
                         </Modal>
                     ) : null
+                }
+                { showConfirmationModal ? 
+                (
+                    <Modal>
+                        <div className="adopt-modal">
+                            <h1>{pet.name} will be so excited to meet you!</h1>
+                            <p>Our staff will reach out to you soon to setup a meet and greet.</p>
+                            <div className="buttons">
+                                <button onClick ={()=> {
+                                    setShowConfirmationModal(false)
+                                    navigate('/')
+                                }}>Back to home page</button>
+                            </div>
+                        </div>
+                    </Modal>
+                ) : null
                 }
             </div>
         </div>

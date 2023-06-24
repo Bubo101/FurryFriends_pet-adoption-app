@@ -4,8 +4,8 @@
 }
 
 body {
-    background-color: #81a69b;
-    background-image: url(http://pets-images.dev-apis.com/pets/wallpaperB.jpg);
+    background-color: lightblue;
+    /* background: linear-gradient(to bottom, #FFFFFF, #008080, #000080); */
     margin: 0;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -90,13 +90,14 @@ body {
 header > a,
 #root > div > h1 {
     display: inline-block;
-    background-image: url(http://static.frontendmasters.com/resources/2019-05-02-complete-intro-react-v5/image-logo.png);
+    background-image: url(./Furry.png);
     filter: brightness(150%);
-    width: 279px;
-    height: 76px;
+    width: 500px;
+    height: 279px;
     overflow: hidden;
     text-indent: -9999px;
-    margin: 20px 0;
+    position: relative;
+    top: 1px;
 }
 
 .pet h2 {
@@ -180,7 +181,8 @@ header {
 }
 
 .search-params input,
-.search-params select {
+.search-params select,
+.adopt-modal input {
     margin-bottom: 30px;
     font-size: 18px;
     height: 30px;
