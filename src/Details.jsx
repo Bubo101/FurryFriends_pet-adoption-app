@@ -81,7 +81,7 @@ const Details = () => {
                 (
                     <Modal>
                         <div className="adopt-modal">
-                            <h1>{pet.name} will be sooo excited to meet you!</h1>
+                            <h1>{pet.name} will be so excited to meet you!</h1>
                             <p>Our staff will reach out to you soon to schedule a meet and greet.</p>
                             <div className="buttons">
                                 <button onClick ={()=> {
