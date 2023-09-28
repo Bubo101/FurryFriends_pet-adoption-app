@@ -4,7 +4,7 @@ const Results = ({ pets }) => {
     return (
         <div className="search">
             {!pets.length ? (
-                <h1>No Pets Have Been Found Yet!</h1>
+                <h1>No Pets Have Been Found!</h1>
             ) : (
                 pets.map(pet => (
                     <Pet
