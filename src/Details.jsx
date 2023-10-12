@@ -70,7 +70,7 @@ const Details = () => {
                                 />
                                 </label>
                                 <div className="buttons">
-                                    <button onClick ={handleConfirmAdoptClick}>Yes, please contact me!</button>
+                                    <button onClick ={handleConfirmAdoptClick}>Yes, please!</button>
                                     <button onClick={()=> setShowModal(false)}>No, thank you.</button>
                                 </div>
                             </div>
